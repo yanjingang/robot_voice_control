@@ -1,0 +1,72 @@
+confidence: 18  #语音识别结果自信度阈值，取值：0-100
+seconds_per_order: 15  #每次语音指令录音长度，单位：秒
+
+line_vel_x: 0.2 #语音控制小车移动的X轴线速度
+ang_vel_z: 0.4 #语音控制小车移动的Z轴角速度速度
+
+radar_range: 0.75 #雷达自动避障障碍物阈值，单位：米
+radar_count: 3 #雷达自动避障排除噪点次数
+if_akm_yes_or_no: "no"   #车型，阿克曼车填yes，其他车型填no
+
+
+kitchen_position_x: -0.6602044105529785  #语音导航-厨房坐标
+kitchen_position_y: -2.4932448863983154
+kitchen_orientation_z: 0.0009666745558798364
+kitchen_orientation_w: 0.9999995327700424
+
+livingroom_position_x: 1.7338588237762451  #语音导航-客厅坐标
+livingroom_position_y: -0.03996443748474121
+livingroom_orientation_z: 0.365614679207877
+livingroom_orientation_w: 0.9307663006081178
+
+sofa_position_x: 2  #语音导航-沙发坐标
+sofa_position_y: 0
+sofa_orientation_z: 0
+sofa_orientation_w: 1
+
+I_position_x: 6.12247228622  #语音导航I点坐标。
+I_position_y: -5.08223628998
+I_orientation_z: 0.714168795054
+I_orientation_w: 0.699973522478
+
+J_position_x: 5.6790471077 #语音导航J点坐标。
+J_position_y: -2.44200921059
+J_orientation_z: -0.71269218246
+J_orientation_w: 0.70147690843
+
+K_position_x: 2 #语音导航K点坐标。
+K_position_y: -1
+K_orientation_z: 0
+K_orientation_w: 1
+
+A_position_x: 2.0 #A,B,C,D,E为自主探索建图区域点
+A_position_y: 2.0
+A_position_z: 0.0
+
+B_position_x: 2.0
+B_position_y: -2.0
+B_position_z: 0.0
+
+C_position_x: -2.0
+C_position_y: -2.0
+C_position_z: 1.0
+
+D_position_x: -2.0
+D_position_y: 2.0
+D_position_z: 0.0
+
+E_position_x: 0.3
+E_position_y: 0.0
+E_position_z: 0.0
+
+O_position_x: 0.5 #O,P,Q三点为多点导航
+O_position_y: 0.5
+O_position_z: 0.0
+
+P_position_x: 0.5
+P_position_y: -0.5
+P_position_z: 0.0
+
+Q_position_x: -0.5
+Q_position_y: 0.0
+Q_position_z: 0.0
