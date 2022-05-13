@@ -3,7 +3,7 @@
 *********************************************************************/
 #include <ros/ros.h>
 #include <signal.h>
-#include <xf_mic_asr_offline/Set_Major_Mic_srv.h>
+#include <robot_voice_control/Set_Major_Mic_srv.h>
 #include <string.h>
 #include <cmath>
 #include <iostream>
@@ -102,7 +102,7 @@ void pose_callback(const nav_msgs::Odometry& msg){
 		current_angle_pub.publish(current_angle_msg);    //发布话题，用于小车寻找声源
 
 		//定义设置主麦服务客户端信息
-		xf_mic_asr_offline::Set_Major_Mic_srv num;
+		robot_voice_control::Set_Major_Mic_srv num;
 		if(angle>=30 && angle<=90)    //根据角度设定主麦方向
 			num.request.mic_id = 1;
 		else if(angle>=90 && angle<=150)
@@ -150,7 +150,7 @@ int main(int argc, char** argv)
 	ros::Subscriber pose_sub = node.subscribe("/odom",1, pose_callback); //"/robot_pose_ekf/odom_combined",1,pose_callback);
 
 	//创建设置主麦服务客户端
-	Set_Major_Mic_client = node.serviceClient<xf_mic_asr_offline::Set_Major_Mic_srv>("voice_control/set_major_mic_srv");
+	Set_Major_Mic_client = node.serviceClient<robot_voice_control::Set_Major_Mic_srv>("voice_control/set_major_mic_srv");
 	
 	double rate2 = 5;    //刷新频率5Hz
 	ros::Rate loopRate2(rate2);

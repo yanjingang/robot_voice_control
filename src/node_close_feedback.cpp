@@ -32,7 +32,7 @@ void voice_choose_callback(const std_msgs::String& msg)
 		cmd_vel_msg.linear.x = 0;
 		cmd_vel_msg.angular.z = 0;
 		cmdvel_pub.publish(cmd_vel_msg);
-		system("aplay -D plughw:CARD=Device,DEV=0 ~/wheeltec_robot/src/xf_mic_asr_offline/feedback_voice/rplidar_close.wav");
+		system("aplay -D plughw:CARD=Device,DEV=0 ~/wheeltec_robot/src/robot_voice_control/feedback_voice/rplidar_close.wav");
 		cout<<"已关闭雷达跟随"<<endl;
 	}
 
@@ -61,7 +61,7 @@ void voice_choose_callback(const std_msgs::String& msg)
 		system("rosnode kill /camera_base_link2");
 		system("rosnode kill /camera_base_link3");
 		system("dbus-launch gnome-terminal -- roslaunch simple_follower laserTracker.launch");
-		system("aplay -D plughw:CARD=Device,DEV=0 ~/wheeltec_robot/src/xf_mic_asr_offline/feedback_voice/visual_close.wav");
+		system("aplay -D plughw:CARD=Device,DEV=0 ~/wheeltec_robot/src/robot_voice_control/feedback_voice/visual_close.wav");
 		cout<<"已关闭色块跟随"<<endl;
 	}
 
@@ -75,15 +75,15 @@ void voice_choose_callback(const std_msgs::String& msg)
 		system("rosnode kill /local_detector");
 		system("rosnode kill /global_detector");
 		system("rosnode kill /move_base");
-		system("dbus-launch gnome-terminal -- roslaunch xf_mic_asr_offline voi_navigation.launch");
-		system("aplay -D plughw:CARD=Device,DEV=0 ~/wheeltec_robot/src/xf_mic_asr_offline/feedback_voice/rrt_close.wav");
+		system("dbus-launch gnome-terminal -- roslaunch robot_voice_control voi_navigation.launch");
+		system("aplay -D plughw:CARD=Device,DEV=0 ~/wheeltec_robot/src/robot_voice_control/feedback_voice/rrt_close.wav");
 
 		cout<<"已关闭自主建图"<<endl;
 	}
 
 	else if(str1 == str5)
 	{
-		system("aplay -D plughw:CARD=Device,DEV=0 ~/wheeltec_robot/src/xf_mic_asr_offline/feedback_voice/OK.wav");
+		system("aplay -D plughw:CARD=Device,DEV=0 ~/wheeltec_robot/src/robot_voice_control/feedback_voice/OK.wav");
 		sleep(0.5);
 		system("rosnode kill /send_mark_1");
 		system("rosnode kill /move_base");
@@ -92,8 +92,8 @@ void voice_choose_callback(const std_msgs::String& msg)
 		cmd_vel_msg.linear.x = 0;
 		cmd_vel_msg.angular.z = 0;
 		cmdvel_pub.publish(cmd_vel_msg);
-		system("dbus-launch gnome-terminal -- roslaunch xf_mic_asr_offline voi_navigation.launch");
-		system("aplay -D plughw:CARD=Device,DEV=0 ~/wheeltec_robot/src/xf_mic_asr_offline/feedback_voice/navigation_close.wav");
+		system("dbus-launch gnome-terminal -- roslaunch robot_voice_control voi_navigation.launch");
+		system("aplay -D plughw:CARD=Device,DEV=0 ~/wheeltec_robot/src/robot_voice_control/feedback_voice/navigation_close.wav");
 		cout<<"已关闭导航"<<endl;
 	}
 

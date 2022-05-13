@@ -341,7 +341,7 @@ void voice_words_callback(const std_msgs::String& msg)
 		std_msgs::Int8 laser_follow_flag_msg;
 		laser_follow_flag_msg.data = 1;
 		laser_follow_flag_pub.publish(laser_follow_flag_msg);*/
-		system("aplay -D plughw:CARD=Device,DEV=0 ~/catkin_ws/src/xf_mic_asr_offline/feedback_voice/OK.wav");
+		system("aplay -D plughw:CARD=Device,DEV=0 ~/catkin_ws/src/robot_voice_control/feedback_voice/OK.wav");
 		system("dbus-launch gnome-terminal -- roslaunch simple_follower laserfollow.launch");//打开雷达跟随节点
 		cout<<"好的：小车雷达跟随"<<endl;
 	}
@@ -353,9 +353,9 @@ void voice_words_callback(const std_msgs::String& msg)
 		std_msgs::Int8 visual_follow_flag_msg;
 		visual_follow_flag_msg.data = 1;
 		visual_follow_flag_pub.publish(visual_follow_flag_msg);*/
-		system("aplay -D plughw:CARD=Device,DEV=0 ~/catkin_ws/src/xf_mic_asr_offline/feedback_voice/OK.wav");
+		system("aplay -D plughw:CARD=Device,DEV=0 ~/catkin_ws/src/robot_voice_control/feedback_voice/OK.wav");
 		system("dbus-launch gnome-terminal -- rosnode kill /laser_tracker");//关闭雷达避障
-		system("dbus-launch gnome-terminal -- roslaunch xf_mic_asr_offline voi_visual_follower.launch");//打开视觉跟随节点
+		system("dbus-launch gnome-terminal -- roslaunch robot_voice_control voi_visual_follower.launch");//打开视觉跟随节点
 		cout<<"好的：小车色块跟随"<<endl;
 	}
 	else if(str1 == "关闭雷达跟随")
@@ -363,7 +363,7 @@ void voice_words_callback(const std_msgs::String& msg)
 		/*OTHER = (char*) "/feedback_voice/OK.wav";
 		WHOLE = join((head + audio_path),OTHER);
 		system(WHOLE);*/
-		system("aplay -D plughw:CARD=Device,DEV=0 ~/catkin_ws/src/xf_mic_asr_offline/feedback_voice/OK.wav");
+		system("aplay -D plughw:CARD=Device,DEV=0 ~/catkin_ws/src/robot_voice_control/feedback_voice/OK.wav");
 		cout<<"好的：关闭雷达跟随"<<endl;
 	}
 	else if(str1 == "关闭色块跟随")
@@ -371,7 +371,7 @@ void voice_words_callback(const std_msgs::String& msg)
 		/*OTHER = (char*) "/feedback_voice/OK.wav";
 		WHOLE = join((head + audio_path),OTHER);
 		system(WHOLE);*/
-		system("aplay -D plughw:CARD=Device,DEV=0 ~/catkin_ws/src/xf_mic_asr_offline/feedback_voice/OK.wav");
+		system("aplay -D plughw:CARD=Device,DEV=0 ~/catkin_ws/src/robot_voice_control/feedback_voice/OK.wav");
 		cout<<"好的：关闭色块跟随"<<endl;
 	}
 	else if(str1 == "打开自主建图")
@@ -382,11 +382,11 @@ void voice_words_callback(const std_msgs::String& msg)
 		std_msgs::Int8 rrt_flag_msg;
 		rrt_flag_msg.data = 1;
 		rrt_flag_pub.publish(rrt_flag_msg);*/
-        system("aplay -D plughw:CARD=Device,DEV=0 ~/catkin_ws/src/xf_mic_asr_offline/feedback_voice/OK.wav");//用扬声器播报:好的
+        system("aplay -D plughw:CARD=Device,DEV=0 ~/catkin_ws/src/robot_voice_control/feedback_voice/OK.wav");//用扬声器播报:好的
 		system("rosnode kill /amcl");//关闭amcl定位节点
 		system("rosnode kill /map_server_for_test");//关闭地图保存节点
 		system("rosnode kill /move_base");//关闭/move_base节点
-		system("dbus-launch gnome-terminal -- roslaunch xf_mic_asr_offline voi_rrt_slam.launch");//打开自主建图功能
+		system("dbus-launch gnome-terminal -- roslaunch robot_voice_control voi_rrt_slam.launch");//打开自主建图功能
 		cout<<"好的：打开自主建图"<<endl;
 	}
 	else if(str1 == "关闭自主建图")
@@ -394,7 +394,7 @@ void voice_words_callback(const std_msgs::String& msg)
 		/*OTHER = (char*) "/feedback_voice/OK.wav";
 		WHOLE = join((head + audio_path),OTHER);
 		system(WHOLE);*/
-		system("aplay -D plughw:CARD=Device,DEV=0 ~/catkin_ws/src/xf_mic_asr_offline/feedback_voice/OK.wav");
+		system("aplay -D plughw:CARD=Device,DEV=0 ~/catkin_ws/src/robot_voice_control/feedback_voice/OK.wav");
 		cout<<"好的：关闭自主建图"<<endl;
 	}
 	else if(str1 == "开始导航")
@@ -402,12 +402,12 @@ void voice_words_callback(const std_msgs::String& msg)
 		/*OTHER = (char*) "/feedback_voice/OK.wav";
 		WHOLE = join((head + audio_path),OTHER);
 		system(WHOLE);*/
-		system("aplay -D plughw:CARD=Device,DEV=0 ~/catkin_ws/src/xf_mic_asr_offline/feedback_voice/OK.wav");
+		system("aplay -D plughw:CARD=Device,DEV=0 ~/catkin_ws/src/robot_voice_control/feedback_voice/OK.wav");
 		system("rosnode kill /move_base");
 		system("rosnode kill /amcl");
 		system("rosnode kill /map_server_for_test");
-		system("dbus-launch gnome-terminal -- roslaunch xf_mic_asr_offline voi_navigation.launch");//打开导航节点
-		system("dbus-launch gnome-terminal -- roslaunch xf_mic_asr_offline send_mark.launch");//打开多点巡航脚本
+		system("dbus-launch gnome-terminal -- roslaunch robot_voice_control voi_navigation.launch");//打开导航节点
+		system("dbus-launch gnome-terminal -- roslaunch robot_voice_control send_mark.launch");//打开多点巡航脚本
 		cout<<"好的：小车开始导航"<<endl;
 	}
 }
@@ -426,7 +426,7 @@ void voice_flag_Callback(std_msgs::Int8 msg)
 	if(voice_flag == 1)
 	{
 		system(WHOLE);
-		//system("aplay -D plughw:CARD=Device,DEV=0 ~/catkin_ws/src/xf_mic_asr_offline/feedback_voice/voice_control.wav");
+		//system("aplay -D plughw:CARD=Device,DEV=0 ~/catkin_ws/src/robot_voice_control/feedback_voice/voice_control.wav");
 		cout<<"语音打开成功"<<endl;
 		//cout<< WHOLE <<endl;
 	}
@@ -491,7 +491,7 @@ int main(int argc, char** argv)
 	ros::Subscriber voice_flag_sub = n.subscribe("voice_flag", 1, voice_flag_Callback);
 
     /* 加载配置参数 */
-	n.param("/command_recognition/audio_path", audio_path, std::string("~/catkin_ws/src/xf_mic_asr_offline/feedback_voice"));
+	n.param("/command_recognition/audio_path", audio_path, std::string("~/catkin_ws/src/robot_voice_control/feedback_voice"));
 	n.param<float>("/I_position_x", I_position_x, 1);
 	n.param<float>("/I_position_y", I_position_y, 0);
 	n.param<float>("/I_orientation_z", I_orientation_z, 0);

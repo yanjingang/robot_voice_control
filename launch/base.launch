@@ -1,32 +1,32 @@
 
 <launch>
     <!-- 开启机器人底层相关节点  -->
-    <!-- <arg name="audio_path" default = "$(find xf_mic_asr_offline)" />
-    <include file="$(find xf_mic_asr_offline)/launch/include/voi_navigation1.launch" />
+    <!-- <arg name="audio_path" default = "$(find robot_voice_control)" />
+    <include file="$(find robot_voice_control)/launch/include/voi_navigation1.launch" />
     <include file='$(find simple_follower)/launch/nodes/laserTracker.launch' /> -->
-    <rosparam command="load" file="$(find xf_mic_asr_offline)/config/recognition_params.yaml" />
+    <rosparam command="load" file="$(find robot_voice_control)/config/recognition_params.yaml" />
 
 
     <!-- 录音调用控制器，包含休眠功能 -->
-    <node pkg="xf_mic_asr_offline" type="call_recognition" name="call_recognition"/>
+    <node pkg="robot_voice_control" type="call_recognition" name="call_recognition"/>
 
     <!-- 命令控制器，命令词识别结果转化为对应的执行动作 -->
-    <node pkg="xf_mic_asr_offline" type="command_recognition" name="command_recognition" output="screen">
-        <param name="audio_path" type="string" value="$(find xf_mic_asr_offline)"/>  
+    <node pkg="robot_voice_control" type="command_recognition" name="command_recognition" output="screen">
+        <param name="audio_path" type="string" value="$(find robot_voice_control)"/>  
     </node>
 
     <!-- 功能节点状态反馈，用于状态语音播报 -->
-    <node pkg="xf_mic_asr_offline" type="node_feedback" name="node_feedback" output="screen">
-        <param name="audio_path" type="string" value="$(find xf_mic_asr_offline)"/>  
+    <node pkg="robot_voice_control" type="node_feedback" name="node_feedback" output="screen">
+        <param name="audio_path" type="string" value="$(find robot_voice_control)"/>  
     </node>
     
     <!-- 底盘运动控制器 -->
-    <node pkg="xf_mic_asr_offline" type="motion_control" name="motion_control" output="screen"/>
+    <node pkg="robot_voice_control" type="motion_control" name="motion_control" output="screen"/>
     <!-- 刷新主麦方向 -->
-    <node pkg="xf_mic_asr_offline" type="refresh_mic" name="refresh_mic" output="screen"/>
+    <node pkg="robot_voice_control" type="refresh_mic" name="refresh_mic" output="screen"/>
     <!-- 
-    <node pkg="xf_mic_asr_offline" type="node_opne_feedback" name="node_opne_feedback" output="screen"/>
-    <node pkg="xf_mic_asr_offline" type="node_close_feedback" name="node_close_feedback" output="screen" />
-    <node pkg="xf_mic_asr_offline" type="point_navigation" name="point_navigation" output="screen" />
+    <node pkg="robot_voice_control" type="node_opne_feedback" name="node_opne_feedback" output="screen"/>
+    <node pkg="robot_voice_control" type="node_close_feedback" name="node_close_feedback" output="screen" />
+    <node pkg="robot_voice_control" type="point_navigation" name="point_navigation" output="screen" />
     -->
 </launch>

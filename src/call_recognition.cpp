@@ -9,10 +9,10 @@
 #include <ctime>
 #include <ros/ros.h>
 #include <std_msgs/String.h>
-#include <xf_mic_asr_offline/Get_Offline_Result_srv.h>
-#include <xf_mic_asr_offline/Pcm_Msg.h>
-#include <xf_mic_asr_offline/Start_Record_srv.h>
-#include <xf_mic_asr_offline/Set_Awake_Word_srv.h>
+#include <robot_voice_control/Get_Offline_Result_srv.h>
+#include <robot_voice_control/Pcm_Msg.h>
+#include <robot_voice_control/Start_Record_srv.h>
+#include <robot_voice_control/Set_Awake_Word_srv.h>
 #include <std_msgs/Int8.h>
 #include <std_msgs/Int32.h>
 #include <sys/stat.h>
@@ -59,11 +59,11 @@ int main(int argc, char *argv[])
  
 	/* 离线命令词识别服务客服端创建 */
 	ros::ServiceClient get_offline_recognise_result_client = 
-	    nh.serviceClient<xf_mic_asr_offline::Get_Offline_Result_srv>("voice_control/get_offline_recognise_result_srv");
+	    nh.serviceClient<robot_voice_control::Get_Offline_Result_srv>("voice_control/get_offline_recognise_result_srv");
 	
 	/* 修改唤醒词服务客户端创建 */
 	//ros::ServiceClient Set_Awake_Word_client =
-	//nh.serviceClient<xf_mic_asr_offline::Set_Awake_Word_srv>("voice_control/set_awake_word_srv");
+	//nh.serviceClient<robot_voice_control::Set_Awake_Word_srv>("voice_control/set_awake_word_srv");
 
 	/* 唤醒标志位话题订阅者创建 */
 	ros::Subscriber awake_flag_sub = nh.subscribe("awake_flag", 1, awake_flag_Callback);
@@ -81,14 +81,14 @@ int main(int argc, char *argv[])
 	nh.param("/seconds_per_order", seconds_per_order, 3);
 
     /* 请求修改唤醒词服务 */
-	//xf_mic_asr_offline::Set_Awake_Word_srv SetAwakeWord_srv;
+	//robot_voice_control::Set_Awake_Word_srv SetAwakeWord_srv;
 	//SetAwakeWord_srv.request.awake_word="小车小车";
 	//Set_Awake_Word_client.call(SetAwakeWord_srv);
     /* 等待服务应答 */
 	//std::cout << "Set_Awake_Word: " << SetAwakeWord_srv.response.result << endl;
 
     /* 离线命令词识别服务参数设置 */
-	xf_mic_asr_offline::Get_Offline_Result_srv GetOfflineResult_srv;
+	robot_voice_control::Get_Offline_Result_srv GetOfflineResult_srv;
 	GetOfflineResult_srv.request.offline_recognise_start = 1;
 	GetOfflineResult_srv.request.confidence_threshold = confidence_threshold;
 	GetOfflineResult_srv.request.time_per_order = seconds_per_order;

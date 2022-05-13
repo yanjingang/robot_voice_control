@@ -1,7 +1,7 @@
 
 #include <ros/ros.h>
 #include <signal.h>
-#include <xf_mic_asr_offline/Set_Major_Mic_srv.h>
+#include <robot_voice_control/Set_Major_Mic_srv.h>
 #include <string.h>
 #include <cmath>
 #include <iostream>
@@ -20,7 +20,7 @@ int main(int argc, char** argv)
 
 	int i =0 ;
 	
-	ros::ServiceClient Set_Major_Mic_client = nha.serviceClient<xf_mic_asr_offline::Set_Major_Mic_srv>("voice_control/set_major_mic_srv");
+	ros::ServiceClient Set_Major_Mic_client = nha.serviceClient<robot_voice_control::Set_Major_Mic_srv>("voice_control/set_major_mic_srv");
 	
 	double rate2 = 0.1;    
 	ros::Rate loopRate2(rate2);
@@ -32,7 +32,7 @@ int main(int argc, char** argv)
 		else 
 			i = 0;
 			
-		xf_mic_asr_offline::Set_Major_Mic_srv num;
+		robot_voice_control::Set_Major_Mic_srv num;
 		num.request.mic_id = i;
 		Set_Major_Mic_client.call(num);
 

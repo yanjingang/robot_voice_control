@@ -5,8 +5,8 @@
 #include <ros/ros.h>
 #include <signal.h>
 #include <geometry_msgs/Twist.h>
-#include <xf_mic_asr_offline/Set_Major_Mic_srv.h>
-#include <xf_mic_asr_offline/position.h>
+#include <robot_voice_control/Set_Major_Mic_srv.h>
+#include <robot_voice_control/position.h>
 #include <string.h>
 #include <math.h>
 #include <iostream>
@@ -56,7 +56,7 @@ void overmap_Callback(std_msgs::Int8 msg)
 入口参数：  laserTracker.py
 返回  值：无
 **************************************************************************/
-void current_position_Callback(const xf_mic_asr_offline::position& msg)	
+void current_position_Callback(const robot_voice_control::position& msg)	
 {
 	distance1 = msg.distance;
 	dis_angleX = msg.angleX;
@@ -149,12 +149,12 @@ void goal_reach_Callback(const move_base_msgs::MoveBaseActionResult& msg)
 	reach = msg.status.text;
 	if(reach == "Goal reached." && goal_control==1)//I、J、K点到达播报
 	{
-		system("aplay -D plughw:CARD=Device,DEV=0 ~/wheeltec_robot/src/xf_mic_asr_offline/feedback_voice/reach_goal.wav");
+		system("aplay -D plughw:CARD=Device,DEV=0 ~/wheeltec_robot/src/robot_voice_control/feedback_voice/reach_goal.wav");
 		goal_control=0;
 	}
 	else if(reach == "Goal reached." && overmap_flag==1)//建图完成播报
 	{
-		system("aplay -D plughw:CARD=Device,DEV=0 ~/wheeltec_robot/src/xf_mic_asr_offline/feedback_voice/overmap.wav");
+		system("aplay -D plughw:CARD=Device,DEV=0 ~/wheeltec_robot/src/robot_voice_control/feedback_voice/overmap.wav");
 		overmap_flag=0;
 	}
 
@@ -388,14 +388,14 @@ int main(int argc, char** argv)
 	//goal_reach_pub = node.advertise<std_msgs::Int8>("reach", 1);
 	
 
-	//ros::ServiceClient Set_Major_Mic_client = node.serviceClient<xf_mic_asr_offline::Set_Major_Mic_srv>("voice_control/set_major_mic_srv");
+	//ros::ServiceClient Set_Major_Mic_client = node.serviceClient<robot_voice_control::Set_Major_Mic_srv>("voice_control/set_major_mic_srv");
 	
  
 	//execute a shutdown function when exiting
 	signal(SIGINT, shutdown);
 	ROS_INFO("motion_control.cpp start...");
 	
-	//xf_mic_asr_offline::Set_Major_Mic_srv num;
+	//robot_voice_control::Set_Major_Mic_srv num;
 	//num.request.mic_id = 0;
 	
 	double rate2 = 10;    //频率10Hz
@@ -467,7 +467,7 @@ int main(int argc, char** argv)
 					cmd_vel_flag = 0;    //各标志位置零
 					turn_fin_flag = 0;
 					temp_count = 0;
-					system("aplay -D plughw:CARD=Device,DEV=0 ~/wheeltec_robot/src/xf_mic_asr_offline/feedback_voice/find.wav");
+					system("aplay -D plughw:CARD=Device,DEV=0 ~/wheeltec_robot/src/robot_voice_control/feedback_voice/find.wav");
 					}
 				}
 			}

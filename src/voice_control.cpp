@@ -11,14 +11,14 @@
 #include <ctime>
 #include <ros/ros.h>
 #include <std_msgs/String.h>
-#include <xf_mic_asr_offline/Get_Offline_Result_srv.h>
-#include <xf_mic_asr_offline/Set_Major_Mic_srv.h>
-#include <xf_mic_asr_offline/Set_Led_On_srv.h>
-#include <xf_mic_asr_offline/Get_Major_Mic_srv.h>
-#include <xf_mic_asr_offline/Pcm_Msg.h>
-#include <xf_mic_asr_offline/Start_Record_srv.h>
-#include <xf_mic_asr_offline/Set_Awake_Word_srv.h>
-#include <xf_mic_asr_offline/Get_Awake_Angle_srv.h>
+#include <robot_voice_control/Get_Offline_Result_srv.h>
+#include <robot_voice_control/Set_Major_Mic_srv.h>
+#include <robot_voice_control/Set_Led_On_srv.h>
+#include <robot_voice_control/Get_Major_Mic_srv.h>
+#include <robot_voice_control/Pcm_Msg.h>
+#include <robot_voice_control/Start_Record_srv.h>
+#include <robot_voice_control/Set_Awake_Word_srv.h>
+#include <robot_voice_control/Get_Awake_Angle_srv.h>
 #include <joint.h>
 
 #include <std_msgs/Int8.h>
@@ -230,7 +230,7 @@ int business_proc_callback(business_msg_t businessMsg)
 			if (status == 0)
 			{
 				//发布关闭前剩余的音频流
-				xf_mic_asr_offline::Pcm_Msg pcm_data;
+				robot_voice_control::Pcm_Msg pcm_data;
 				vector<char>::iterator it;
 				for (it = pcm_buf.begin(); it != pcm_buf.end(); it++)
 				{
@@ -470,8 +470,8 @@ Effective_Result show_result(char *string) //
 }
 
 /*获取离线命令词识别结果*/
-bool Get_Offline_Recognise_Result(xf_mic_asr_offline::Get_Offline_Result_srv::Request &req,
-								  xf_mic_asr_offline::Get_Offline_Result_srv::Response &res)
+bool Get_Offline_Recognise_Result(robot_voice_control::Get_Offline_Result_srv::Request &req,
+								  robot_voice_control::Get_Offline_Result_srv::Response &res)
 {
 	offline_recognise_switch = req.offline_recognise_start;
 	if (offline_recognise_switch == 1) //如果是离线识别模式
@@ -595,7 +595,7 @@ bool Get_Offline_Recognise_Result(xf_mic_asr_offline::Get_Offline_Result_srv::Re
 content:获取麦克风音频,if msg==1,开启录音并实时发布，若msg==0,关闭录音
 data :20200407 PM
 */
-bool Record_Start(xf_mic_asr_offline::Start_Record_srv::Request &req, xf_mic_asr_offline::Start_Record_srv::Response &res)
+bool Record_Start(robot_voice_control::Start_Record_srv::Request &req, robot_voice_control::Start_Record_srv::Response &res)
 {
 	if (req.whether_start == 1)
 	{
@@ -634,8 +634,8 @@ bool Record_Start(xf_mic_asr_offline::Start_Record_srv::Request &req, xf_mic_asr
 content:设置麦克风唤醒词4-6汉字
 data :20200407 PM
 */
-bool Set_Awake_Word(xf_mic_asr_offline::Set_Awake_Word_srv::Request &req,
-					xf_mic_asr_offline::Set_Awake_Word_srv::Response &res)
+bool Set_Awake_Word(robot_voice_control::Set_Awake_Word_srv::Request &req,
+					robot_voice_control::Set_Awake_Word_srv::Response &res)
 {
 	ROS_INFO("got request,start to correct awake word ...\n");
 	if (strlen(req.awake_word.c_str()) >= 12 && strlen(req.awake_word.c_str()) <= 18) //4-6个汉字
@@ -678,8 +678,8 @@ bool Set_Awake_Word(xf_mic_asr_offline::Set_Awake_Word_srv::Request &req,
 content:设置灯亮,输入参数为0-11.99表示灯光关闭
 data :20200407 PM
 */
-bool Set_Led_On(xf_mic_asr_offline::Set_Led_On_srv::Request &req,
-				xf_mic_asr_offline::Set_Led_On_srv::Response &res)
+bool Set_Led_On(robot_voice_control::Set_Led_On_srv::Request &req,
+				robot_voice_control::Set_Led_On_srv::Response &res)
 {
 	ROS_INFO("got topic request,start to make the target led on ...\n");
 	char str[256] = {0};
@@ -733,8 +733,8 @@ bool Set_Led_On(xf_mic_asr_offline::Set_Led_On_srv::Request &req,
 content:设置主麦克风,麦克风共6个,输入参数为0-5.
 data :20200407 PM
 */
-bool Set_Major_Mic(xf_mic_asr_offline::Set_Major_Mic_srv::Request &req,
-				   xf_mic_asr_offline::Set_Major_Mic_srv::Response &res)
+bool Set_Major_Mic(robot_voice_control::Set_Major_Mic_srv::Request &req,
+				   robot_voice_control::Set_Major_Mic_srv::Response &res)
 {
 	ROS_INFO("got topic request,start to make the target led on ...\n");
 	char str[256] = {0};
@@ -813,8 +813,8 @@ bool Set_Major_Mic(xf_mic_asr_offline::Set_Major_Mic_srv::Request &req,
 /*
 content:获取主麦克风编号,当请求1时,调用该接口.
 */
-bool Get_Major_Mic(xf_mic_asr_offline::Get_Major_Mic_srv::Request &req,
-				   xf_mic_asr_offline::Get_Major_Mic_srv::Response &res)
+bool Get_Major_Mic(robot_voice_control::Get_Major_Mic_srv::Request &req,
+				   robot_voice_control::Get_Major_Mic_srv::Response &res)
 {
 	if (req.get_major_id == 1)
 	{
@@ -845,8 +845,8 @@ bool Get_Major_Mic(xf_mic_asr_offline::Get_Major_Mic_srv::Request &req,
 /*
 content:获取主麦克风编号,当请求1时,调用该接口.
 */
-bool Get_Awake_Angle(xf_mic_asr_offline::Get_Awake_Angle_srv::Request &req,
-					 xf_mic_asr_offline::Get_Awake_Angle_srv::Response &res)
+bool Get_Awake_Angle(robot_voice_control::Get_Awake_Angle_srv::Request &req,
+					 robot_voice_control::Get_Awake_Angle_srv::Response &res)
 {
 	if (req.get_awake_angle == 1)
 	{
@@ -877,7 +877,7 @@ int main(int argc, char *argv[])
 	ros::NodeHandle ndHandle("~");
 	ndHandle.param("/confidence", confidence, 0);//离线命令词识别置信度阈值
 	ndHandle.param("/seconds_per_order", time_per_order, 3); //单次录制音频的时长
-	ndHandle.param("source_path", source_path, std::string("~/catkin_ws/src/xf_mic_asr_offline"));
+	ndHandle.param("source_path", source_path, std::string("~/catkin_ws/src/robot_voice_control"));
 	ndHandle.param("/appid", appid, std::string("5fa0b8b9"));//appid，需要更换为自己的
 
 	printf("-----confidence =%d\n",confidence);
@@ -891,7 +891,7 @@ int main(int argc, char *argv[])
 	ros::NodeHandle n;
 
 	/*　topic 发布实时音频文件 */
-	pub_pcm = ndHandle.advertise<xf_mic_asr_offline::Pcm_Msg>(pcm_topic, 1);
+	pub_pcm = ndHandle.advertise<robot_voice_control::Pcm_Msg>(pcm_topic, 1);
 	/*　topic 发布唤醒角度 */
 	pub_awake_angle = ndHandle.advertise<std_msgs::Int32>(awake_angle_topic, 1);
 	/*　topic 发布主麦克风 */

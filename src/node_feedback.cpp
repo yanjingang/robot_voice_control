@@ -157,7 +157,7 @@ int main(int argc, char** argv)
 
 	ros::Subscriber rrt_flag_sub = nha.subscribe("rrt_flag", 1, rrt_flagCallback);//自主探索建图开启标志位订阅
 
-	nha.param("/node_feedback/audio_path", audio_path, std::string("~/catkin_ws/src/xf_mic_asr_offline/feedback_voice"));
+	nha.param("/node_feedback/audio_path", audio_path, std::string("~/catkin_ws/src/robot_voice_control/feedback_voice"));
 
 	/***创建关闭速度信息发布者***/
 	cmdvel_pub = nha.advertise<geometry_msgs::Twist>("cmd_vel", 1);

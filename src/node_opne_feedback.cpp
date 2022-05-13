@@ -26,7 +26,7 @@ void laser_follow_flagCallback(std_msgs::Int8 msg)
 	
 	if(laser_follow_flag == 1)
 	{
-		system("aplay -D plughw:CARD=Device,DEV=0 ~/catkin_ws/src/xf_mic_asr_offline/feedback_voice/rplidar_open.wav");
+		system("aplay -D plughw:CARD=Device,DEV=0 ~/catkin_ws/src/robot_voice_control/feedback_voice/rplidar_open.wav");
 
 		cout<<"雷达跟随打开成功"<<endl;
 	}
@@ -43,7 +43,7 @@ void rrt_flagCallback(std_msgs::Int8 msg)
 	rrt_flag = msg.data;
 	if(rrt_flag == 1)
 	{
-		system("aplay -D plughw:CARD=Device,DEV=0 ~/catkin_ws/src/xf_mic_asr_offline/feedback_voice/rrt_open.wav");
+		system("aplay -D plughw:CARD=Device,DEV=0 ~/catkin_ws/src/robot_voice_control/feedback_voice/rrt_open.wav");
 		cout<<"自主建图打开成功"<<endl;
 	}
 	
@@ -61,7 +61,7 @@ void visual_follow_flagCallback(std_msgs::Int8 msg)
 	visual_follow_flag = msg.data;
 	if(visual_follow_flag == 1)
 	{
-		system("aplay -D plughw:CARD=Device,DEV=0 ~/catkin_ws/src/xf_mic_asr_offline/feedback_voice/visual_open.wav");
+		system("aplay -D plughw:CARD=Device,DEV=0 ~/catkin_ws/src/robot_voice_control/feedback_voice/visual_open.wav");
 		cout<<"色块跟随打开成功"<<endl;
 		
 	}

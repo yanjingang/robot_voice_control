@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>xf_mic_asr_offline</name>
+  <name>robot_voice_control</name>
   <version>0.0.0</version>
-  <description>The xf_mic_asr_offline package</description>
+  <description>The robot_voice_control package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->
