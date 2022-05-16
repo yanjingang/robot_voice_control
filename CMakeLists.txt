@@ -167,7 +167,7 @@ catkin_package(
 #add_dependencies(
 #  hid_test_auto
 #  ${xf_mic_package_EXPORTED_TARGETS}
-#  xf_mic_asr_offline_gencpp
+#  robot_voice_control_gencpp
 #)
 #target_link_libraries(hid_test_auto ${catkin_LIBRARIES} offline_record_lib hid_lib rt dl pthread stdc++ )
 
@@ -182,7 +182,7 @@ add_executable(voice_control src/voice_control.cpp)
 add_dependencies(
   voice_control
   ${xf_mic_package_EXPORTED_TARGETS}
-  xf_mic_asr_offline_gencpp
+  robot_voice_control_gencpp
 )
 target_link_libraries(voice_control ${catkin_LIBRARIES} offline_record_lib hid_lib rt dl pthread stdc++ )
 
@@ -191,7 +191,7 @@ add_executable(call_recognition src/call_recognition.cpp)
 add_dependencies(
   call_recognition
   ${xf_mic_package_EXPORTED_TARGETS}
-  xf_mic_asr_offline_gencpp
+  robot_voice_control_gencpp
 )
 target_link_libraries(
     call_recognition 
@@ -207,7 +207,7 @@ add_executable(command_recognition
 add_dependencies(
   command_recognition
   ${xf_mic_package_EXPORTED_TARGETS}
-  xf_mic_asr_offline_gencpp
+  robot_voice_control_gencpp
 )
 target_link_libraries(
    command_recognition
@@ -222,7 +222,7 @@ add_executable(motion_control
 add_dependencies(
   motion_control
  ${xf_mic_package_EXPORTED_TARGETS}
- xf_mic_asr_offline_gencpp
+ robot_voice_control_gencpp
 )
 target_link_libraries(
   motion_control
@@ -236,7 +236,7 @@ add_executable(refresh_mic
 add_dependencies(
   refresh_mic
  ${xf_mic_package_EXPORTED_TARGETS}
- xf_mic_asr_offline_gencpp
+ robot_voice_control_gencpp
 )
 target_link_libraries(
   refresh_mic
@@ -251,7 +251,7 @@ add_executable(node_feedback
 add_dependencies(
   node_feedback
   ${xf_mic_package_EXPORTED_TARGETS}
-  xf_mic_asr_offline_gencpp
+  robot_voice_control_gencpp
 )
 target_link_libraries(
    node_feedback
