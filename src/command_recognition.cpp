@@ -226,7 +226,7 @@ void voice_words_callback(const std_msgs::String& msg)
 	指令：小车去I点
 	动作：底盘运动控制器失能(导航控制)，发布目标点
 	***********************************/
-	else if(str1 == "小车去I点" || str1 == "小猪去I点" || str1 == "小猪去厨房")
+	else if(str1 == "小车去I点" || str1 == "小猪去I点" || str1 == "小猪去厨房" || str1 == "小猪来厨房")
 	{
 		target.pose.position.x = I_position_x;
 		target.pose.position.y = I_position_y;
@@ -250,7 +250,7 @@ void voice_words_callback(const std_msgs::String& msg)
 	指令：小车去J点
 	动作：底盘运动控制器失能(导航控制)，发布目标点
 	***********************************/
-	else if(str1 == "小车去J点" || str1 == "小猪去J点" || str1 == "小猪去客厅")
+	else if(str1 == "小车去J点" || str1 == "小猪去J点" || str1 == "小猪去客厅" || str1 == "小猪来客厅")
 	{
 		target.pose.position.x = J_position_x;
 		target.pose.position.y = J_position_y;

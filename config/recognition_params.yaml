@@ -24,20 +24,20 @@ sofa_position_y: 0
 sofa_orientation_z: 0
 sofa_orientation_w: 1
 
-I_position_x: 6.12247228622  #语音导航I点坐标。
-I_position_y: -5.08223628998
-I_orientation_z: 0.714168795054
-I_orientation_w: 0.699973522478
+I_position_x: -0.6602044105529785  #语音导航I点坐标。-厨房坐标
+I_position_y: -2.4932448863983154
+I_orientation_z: 0.0009666745558798364
+I_orientation_w: 0.9999995327700424
 
-J_position_x: 5.6790471077 #语音导航J点坐标。
-J_position_y: -2.44200921059
-J_orientation_z: -0.71269218246
-J_orientation_w: 0.70147690843
+J_position_x: 1.7338588237762451 #语音导航J点坐标。-客厅坐标
+J_position_y: -0.03996443748474121
+J_orientation_z: 0.365614679207877
+J_orientation_w: 0.9307663006081178
 
-K_position_x: 2 #语音导航K点坐标。
-K_position_y: -1
-K_orientation_z: 0
-K_orientation_w: 1
+K_position_x: 1.7338588237762451 #语音导航K点坐标。-沙发坐标
+K_position_y: -0.03996443748474121
+K_orientation_z: 0.365614679207877
+K_orientation_w: 0.9307663006081178
 
 A_position_x: 2.0 #A,B,C,D,E为自主探索建图区域点
 A_position_y: 2.0
