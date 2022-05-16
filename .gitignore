@@ -112,5 +112,6 @@ ENV/
 *.log
 *.cache
 linux_sdk
+linux_sdk.tar.gz
 config/msc/res/asr/GrmBuilld
 audio/vvui_deno.pcm
