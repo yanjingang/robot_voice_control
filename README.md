@@ -119,8 +119,16 @@ alsamixer
 // 通过“小猪小猪”唤醒
 
 
+**6.获取目标点坐标**
 
-**6.重启lanuch测试**
+// 运行 base.launch 后打开 RVIZ，使用 2D 导航工具 2D Nav Goal 选取厨房的目标点和方向后，终端显示对应的坐标点参数
+
+rostopic echo /move_base_simple/goal
+
+//得到目标坐标点后我们在 config/recognition_params.yaml 文件添加厨房的 x.y.z.w 坐标参数设置。
+
+
+**7.视觉导航到制定目标**
 
 通过“小猪去厨房”进行自定义位置点导航测试即可。
 
@@ -138,6 +146,9 @@ roslaunch robot_voice_control mic_init.launch
 // 启动底盘base control 
 
 roslaunch ros_arduino_python arduino.launch
+
+// 启动激光雷达+base_control
+roslaunch robot_navigation robot_lidar.launch 
 
 // 启动camera 
 
@@ -159,3 +170,42 @@ roslaunch robot_vslam move_base.launch planner:=dwa move_forward_only:=true
 roslaunch robot_vslam rtabmap_rviz.launch
 
 // 语音控制“小猪去厨房”
+
+
+
+
+**8.激光+视觉导航到制定目标**
+通过“小猪去厨房”进行自定义位置点导航测试即可。
+
+
+// 启动语音处理相关包
+
+roslaunch robot_voice_control base.launch
+
+// 启动麦克风阵列离线SDK主程序
+
+roslaunch robot_voice_control mic_init.launch
+
+
+
+// 启动激光雷达+base_control
+
+roslaunch robot_navigation robot_lidar.launch 
+
+// 启动camera 
+
+roslaunch robot_vslam camera.launch 
+
+// 启动rtab并自动定位 
+
+roslaunch robot_vslam rtabmap_rgbd_lidar.launch localization:=true 
+
+// 启动movebase（允许后退） 
+
+roslaunch robot_vslam move_base.launch planner:=dwa move_forward_only:=false
+
+// pc端查看
+
+roslaunch robot_vslam rtabmap_rviz.launch
+
+// 通过“小猪小猪”唤醒
