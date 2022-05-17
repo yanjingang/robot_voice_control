@@ -108,6 +108,7 @@ ENV/
 # temporary files
 *~
 
+nohup.out
 *.bak
 *.log
 *.cache
