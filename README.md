@@ -147,9 +147,6 @@ roslaunch robot_voice_control mic_init.launch
 
 roslaunch ros_arduino_python arduino.launch
 
-// 启动激光雷达+base_control
-roslaunch robot_navigation robot_lidar.launch 
-
 // 启动camera 
 
 roslaunch robot_vslam camera.launch 
