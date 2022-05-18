@@ -29,15 +29,15 @@ I_position_y: -1.34648287296
 I_orientation_z: -0.258877287432
 I_orientation_w: 0.965910218422
 
-J_position_x: 1.40787053108 #语音导航J点坐标。-客厅坐标
-J_position_y: -0.303772866726
-J_orientation_z: 0.0713205940144
-J_orientation_w: 0.997453443961
+J_position_x: 0.432120323181 #语音导航J点坐标。-客厅坐标
+J_position_y: 0.054212808609
+J_orientation_z: 0.113731999468
+J_orientation_w: 0.993511465609
 
-K_position_x: 2.28551888466 #语音导航K点坐标。-沙发坐标
-K_position_y: -0.59939968586
-K_orientation_z: 0.197857188353
-K_orientation_w: 0.980230857001
+K_position_x: 2.4151301384 #语音导航K点坐标。-沙发坐标
+K_position_y: -0.110802903771
+K_orientation_z: 0.0653082277213
+K_orientation_w: 0.99786513888
 
 A_position_x: 2.0 #A,B,C,D,E为自主探索建图区域点
 A_position_y: 2.0
